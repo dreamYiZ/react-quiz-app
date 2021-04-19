@@ -9,14 +9,13 @@ import {
   FormControl,
   InputLabel,
   MenuItem,
-  Divider,
   Snackbar,
 } from "@material-ui/core";
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from "@material-ui/core/styles";
 import React, { useState, useEffect } from "react";
-import { PATH_ADD_QUESTION, upload, post, PATH_LOGIN_AUTH, PATH_UPLOAD } from "./api";
+import { PATH_ADD_QUESTION, upload, post, PATH_LOGIN_AUTH } from "./api";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -263,8 +262,10 @@ function App() {
               setType(v);
             }}
           >
-            <FormControlLabel value="0" control={<Radio />} label="普通" />
-            <FormControlLabel value="1" control={<Radio />} label="音频" />
+            <FormControlLabel value="3" control={<Radio />} label="三级" />
+            <FormControlLabel value="4" control={<Radio />} label="四级" />
+            <FormControlLabel value="2" control={<Radio />} label="口语" />
+            <FormControlLabel value="1" control={<Radio />} label="听力" />
           </RadioGroup>
           <div className={classes.flexCenter}>            
             <FormControl              
