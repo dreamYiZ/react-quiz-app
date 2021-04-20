@@ -86,10 +86,12 @@ function App() {
 
   const submit = async () => {
     let media = '-';
+    // 是听力就要有文件
     if(type === '1') {
       media = await upload(file)
       setMessage(message);
     }
+
     post(PATH_ADD_QUESTION, {
       question,     // 问题
       answer,       // 答案
