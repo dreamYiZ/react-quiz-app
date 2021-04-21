@@ -62,8 +62,11 @@ const useStyles = makeStyles((theme) => ({
   submitBtn:{
     width: 100,
     height: 40,
+    marginLeft: theme.spacing(1),
   }
 }));
+
+let audio = new Audio();
 
 function App() {
   const classes = useStyles();
@@ -75,7 +78,7 @@ function App() {
   const [optionD,   setOptionD]   = useState("");  // 选项D
   const [type,      setType]      = useState("0"); // 类型
   const [difficult, setDifficult] = useState("0"); // 难度分数
-  const [file,      setFile]      = useState("0"); // 文件
+  const [file,      setFile]      = useState(""); // 文件
   const [sn,        setSn]        = useState("0"); // 编号
 
   const [userName,  setUserName]  = useState("");  // 用户名
@@ -136,6 +139,24 @@ function App() {
     }
     setOpen(false);    
   };
+
+  const play = () => {
+    console.log('file', file)
+
+    if(!file){
+      setMessage('当前无文件')
+      return
+    }
+    console.log('audio', audio)
+    audio.pause();
+    audio.src = URL.createObjectURL(file);
+    audio.play();
+    audio.currentTime = 82;
+  };
+
+  const stop = () => {
+    audio.pause();
+  }
 
   return (
     <div className="App">
@@ -277,7 +298,14 @@ function App() {
               }}
             >
               <input type="file" disabled={ type === '0' } />
+              <Button className={classes.submitBtn} variant="contained" onClick={play}>
+                试听
+              </Button>
+              <Button className={classes.submitBtn} variant="contained" onClick={stop}>
+                停
+              </Button>
             </FormControl>            
+            
             <Button className={classes.submitBtn} variant="contained" onClick={submit}>
               提交
             </Button>
