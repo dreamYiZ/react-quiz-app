@@ -110,6 +110,7 @@ function App() {
       console.log("res", res);
       const {data: { message }} = res;
       setMessage(message);
+      setSn(parseInt(sn)+1);
     });
   };
 
@@ -151,7 +152,7 @@ function App() {
     audio.pause();
     audio.src = URL.createObjectURL(file);
     audio.play();
-    audio.currentTime = 82;
+    audio.currentTime = 40;
   };
 
   const stop = () => {
