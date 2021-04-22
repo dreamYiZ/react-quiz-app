@@ -17,6 +17,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import React, { useState, useEffect } from "react";
 import { PATH_ADD_QUESTION, upload, post, PATH_LOGIN_AUTH } from "./api";
 
+const SKIP_TIME = 40;
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -152,7 +154,7 @@ function App() {
     audio.pause();
     audio.src = URL.createObjectURL(file);
     audio.play();
-    audio.currentTime = 40;
+    audio.currentTime = SKIP_TIME;
   };
 
   const stop = () => {
