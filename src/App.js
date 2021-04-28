@@ -72,6 +72,8 @@ let audio = new Audio();
 
 function App() {
   const classes = useStyles();
+
+  // state 
   const [question,  setQuestion]  = useState("");  // 问题
   const [answer,    setAnswer]    = useState("A"); // 答案
   const [optionA,   setOptionA]   = useState("");  // 选项A
@@ -82,12 +84,24 @@ function App() {
   const [difficult, setDifficult] = useState("0"); // 难度分数
   const [file,      setFile]      = useState(""); // 文件
   const [sn,        setSn]        = useState("0"); // 编号
-
+  // user
   const [userName,  setUserName]  = useState("");  // 用户名
   const [password,  setPassword]  = useState("");  // 密码
-
+  // message
   const [open, setOpen]           = useState(false);
   const [message, setMessage]     = useState('');
+
+  // useEffect -- start
+  useEffect(()=>{
+    message && setOpen(true);
+  }, [message]);
+
+  useEffect(()=>{
+    open || setMessage(undefined);
+  }, [open]);
+
+  // useEffect -- end
+
 
   const submit = async () => {
     let media = '-';
@@ -116,13 +130,6 @@ function App() {
     });
   };
 
-  useEffect(()=>{
-    message && setOpen(true);
-  }, [message]);
-
-  useEffect(()=>{
-    open || setMessage(undefined);
-  }, [open]);
 
   const login = () => {
     post(PATH_LOGIN_AUTH,{
